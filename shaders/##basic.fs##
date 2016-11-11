@@ -1,0 +1,14 @@
+#version 330
+uniform vec4 lumpos;
+uniform sampler1D alt;
+in vec2 vsoTexCoord;
+in vec3 vsoNormal;
+in vec4 vsoModPosition;
+in vec3 vsoPosition;
+
+out vec4 fragColor;
+
+void main(void) {
+  vec3 lum = normalize(vsoModPosition.xyz - lumpos.xyz);
+  fragColor = vec4(vec3(0.3 + 0.7 * dot(normalize(vsoNormal), -lum)), 1.0);
+}
